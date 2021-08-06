@@ -2,6 +2,7 @@
 
 namespace App\Actions\Todo;
 
+use App\Http\Resources\TodoResource;
 use App\Models\Todo;
 use Lorisleiva\Actions\Concerns\AsAction;
 
@@ -9,18 +10,14 @@ class GetTodoWithItem
 {
     use AsAction;
 
-    public function rules(): array
+    /**
+     * @param  int  $todoId
+     * @return string
+     */
+    public function handle(int $todoId)
     {
-        return [
-        ];
-    }
-
-
-
-    public function handle($todoId): array
-    {
-        return Todo::with('items')
-            ->findOrFail($todoId)
-            ->toArray();
+        $todo = Todo::with('items')
+            ->findOrFail($todoId);
+        return TodoResource::make($todo)->toJson();
     }
 }
