@@ -28,7 +28,7 @@ class TodoFactory extends Factory
         return [
             'user_id' => User::query()->first()->id,
             'title' => $this->faker->realTextBetween(1, 30),
-            'attachment' => $files->toArray(),
+            'attachment' => $files->toJson(),
         ];
     }
 }

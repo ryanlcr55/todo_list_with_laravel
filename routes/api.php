@@ -17,7 +17,7 @@ Route::namespace('Todo')
     ->middleware(['api', 'auth:api'])
     ->prefix('todos')
     ->group(function () {
-//        Route::get('/', 'REPLACE_WITH_YOUR_CLASS');
+       Route::get('/', 'GetByUser');
     });
 
 Route::namespace('Todo')
