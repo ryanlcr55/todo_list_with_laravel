@@ -28,10 +28,10 @@ Route::namespace('Todo')
         Route::post('/', 'CreateTodo');
         Route::put('/{todoId}', 'UpdateTodo');
         Route::delete('/{todoId}', 'DeleteTodo');
-//
+
         Route::post('/{todoId}/item', 'Item\CreateOrUpdateItem');
         Route::put('/{todoId}/item/{itemId}', 'Item\CreateOrUpdateItem');
-//        Route::delete('/{todoId}/item/{itemId}', 'REPLACE_WITH_YOUR_CLASS');
+        Route::delete('/{todoId}/item/{itemId}', 'Item\DeleteItem');
     });
 
 Route::namespace('Auth')
