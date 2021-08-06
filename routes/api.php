@@ -26,7 +26,7 @@ Route::namespace('Todo')
     ->group(function () {
 //        Route::get('/{todoId}', 'REPLACE_WITH_YOUR_CLASS');
         Route::post('/', 'Create');
-//        Route::put('/{todoId}', 'REPLACE_WITH_YOUR_CLASS');
+        Route::put('/{todoId}', 'Update');
 //        Route::delete('/{todoId}', 'REPLACE_WITH_YOUR_CLASS');
 //
         Route::post('/{todoId}/item', 'Item\CreateOrUpdateItem');
