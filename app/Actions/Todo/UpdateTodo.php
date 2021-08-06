@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class Create
+class UpdateTodo
 {
     use AsAction;
 
@@ -15,7 +15,6 @@ class Create
     {
         return [
             'title' => [
-                'required',
                 'string'
             ],
             'attachment' => [
@@ -26,16 +25,15 @@ class Create
 
     /**
      * @param  ActionRequest  $request
+     * @param  int  $todoId
      * @return array
      */
-    public function handle(ActionRequest $request)
+    public function handle(ActionRequest $request, int $todoId)
     {
-        $user = json_decode(auth()->user(), true);
-        abort_if(!$user, Response::HTTP_UNAUTHORIZED, Response::$statusTexts[Response::HTTP_UNAUTHORIZED]);
-
+        $user = auth()->user();
         $data = $request->validated();
-        $data['user_id'] = $user['id'];
-        $todo = Todo::query()->create($data);
+        $todo = Todo::query()->whereUserId($user->id)->findOrFail($todoId);
+        $todo->update($data);
 
         return ['data' => Todo::find($todo->id)->toArray()];
     }

@@ -3,11 +3,10 @@
 namespace App\Actions\Todo;
 
 use App\Models\Todo;
-use Illuminate\Http\Response;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class GetByUser
+class GetTodoByUser
 {
     use AsAction;
 
@@ -24,11 +23,10 @@ class GetByUser
      */
     public function handle(ActionRequest $request): array
     {
-        $user = json_decode(auth()->user(), true);
-        abort_if(!$user, Response::HTTP_UNAUTHORIZED, Response::$statusTexts[Response::HTTP_UNAUTHORIZED]);
+        $user = auth()->user();
 
         $todos = Todo::with('items')
-            ->where('user_id', '=', $user['id'])
+            ->where('user_id', '=', $user->id)
             ->orderBy('created_at')
             ->get();
 

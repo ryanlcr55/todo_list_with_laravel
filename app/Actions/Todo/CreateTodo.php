@@ -3,11 +3,10 @@
 namespace App\Actions\Todo;
 
 use App\Models\Todo;
-use Illuminate\Http\Response;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class Update
+class CreateTodo
 {
     use AsAction;
 
@@ -15,6 +14,7 @@ class Update
     {
         return [
             'title' => [
+                'required',
                 'string'
             ],
             'attachment' => [
@@ -25,15 +25,14 @@ class Update
 
     /**
      * @param  ActionRequest  $request
-     * @param  int  $id
      * @return array
      */
-    public function handle(ActionRequest $request, int $id)
+    public function handle(ActionRequest $request)
     {
         $user = auth()->user();
         $data = $request->validated();
-        $todo = Todo::query()->whereUserId($user->id)->findOrFail($id);
-        $todo->update($data);
+        $data['user_id'] = $user->id;
+        $todo = Todo::query()->create($data);
 
         return ['data' => Todo::find($todo->id)->toArray()];
     }

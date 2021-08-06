@@ -2,7 +2,6 @@
 
 namespace App\Actions\Auth;
 
-use Illuminate\Http\Response;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 
@@ -21,13 +20,12 @@ class GetMe
      */
     public function handle(ActionRequest $request): array
     {
-        $user = json_decode(auth()->user(), true);
-        abort_if(!$user, Response::HTTP_UNAUTHORIZED, Response::$statusTexts[Response::HTTP_UNAUTHORIZED]);
+        $user = auth()->user();
 
         return [
             'user' => [
-                'name' => $user['name'],
-                'email' => $user['email'],
+                'name' => $user->name,
+                'email' => $user->email,
             ]
         ];
     }

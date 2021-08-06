@@ -17,7 +17,7 @@ Route::namespace('Todo')
     ->middleware(['api', 'auth:api'])
     ->prefix('todos')
     ->group(function () {
-       Route::get('/', 'GetByUser');
+       Route::get('/', 'GetTodoByUser');
     });
 
 Route::namespace('Todo')
@@ -25,8 +25,8 @@ Route::namespace('Todo')
     ->prefix('todo')
     ->group(function () {
 //        Route::get('/{todoId}', 'REPLACE_WITH_YOUR_CLASS');
-        Route::post('/', 'Create');
-        Route::put('/{todoId}', 'Update');
+        Route::post('/', 'CreateTodo');
+        Route::put('/{todoId}', 'UpdateTodo');
 //        Route::delete('/{todoId}', 'REPLACE_WITH_YOUR_CLASS');
 //
         Route::post('/{todoId}/item', 'Item\CreateOrUpdateItem');
