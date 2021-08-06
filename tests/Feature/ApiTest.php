@@ -153,6 +153,20 @@ test('can delete todo', function () use ($createUserWithData) {
     }
 });
 
+test('can delete all todos', function () use ($createUserWithData) {
+    $user = $createUserWithData(createRelationData: true);
+    auth()->guard()->login($user);
+    $this->assertAuthenticated();
+
+    $response = $this->delete('/api/todos/');
+    $todos = Todo::query()
+        ->where('user_id', '=', $user->id)
+        ->get();
+
+    $response->assertSuccessful();
+    $this->assertEmpty($todos);
+});
+
 test('can create and update todo items', function () use ($createUserWithData) {
     $user = $createUserWithData();
     auth()->guard()->login($user);
