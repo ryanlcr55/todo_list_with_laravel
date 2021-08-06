@@ -31,7 +31,6 @@ class Login
     public function handle(ActionRequest $request): array
     {
         $token = auth()->attempt($request->validated());
-
         abort_if(!$token, Response::HTTP_UNAUTHORIZED, Response::$statusTexts[Response::HTTP_UNAUTHORIZED]);
 
         return [

@@ -17,7 +17,7 @@ class GetMe
     }
 
     /*
-     * @return array{access_token: string}
+     * @return array{ user: {name: string, email: string}}
      */
     public function handle(ActionRequest $request): array
     {

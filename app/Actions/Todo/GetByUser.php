@@ -17,8 +17,10 @@ class GetByUser
         ];
     }
 
-    /*
-     * @return array{access_token: string}
+
+    /**
+     * @param  ActionRequest  $request
+     * @return array
      */
     public function handle(ActionRequest $request): array
     {
