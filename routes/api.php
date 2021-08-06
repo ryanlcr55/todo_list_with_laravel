@@ -45,6 +45,6 @@ Route::namespace('Auth')
     ->middleware(['api', 'auth:api'])
     ->prefix('auth')
     ->group(function () {
-//        Route::post('refresh', 'REPLACE_WITH_YOUR_CLASS');
-//        Route::get('me', 'REPLACE_WITH_YOUR_CLASS');
+        Route::post('refresh', 'TokenFresh');
+        Route::get('me', 'GetMe');
     });
