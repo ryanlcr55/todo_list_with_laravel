@@ -17,7 +17,7 @@ Route::namespace('Todo')
     ->middleware(['api', 'auth:api'])
     ->prefix('todos')
     ->group(function () {
-        Route::get('/', 'GetTodoByUser');
+        Route::get('/', 'GetTodosByUser');
         Route::delete('/', 'DeleteTodosByUser');
     });
 

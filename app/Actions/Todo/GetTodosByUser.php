@@ -6,7 +6,7 @@ use App\Http\Resources\TodoResource;
 use App\Models\Todo;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class GetTodoByUser
+class GetTodosByUser
 {
     use AsAction;
 
