@@ -18,6 +18,7 @@ Route::namespace('Todo')
     ->prefix('todos')
     ->group(function () {
         Route::get('/', 'GetTodoByUser');
+        Route::delete('/', 'DeleteTodosByUser');
     });
 
 Route::namespace('Todo')
